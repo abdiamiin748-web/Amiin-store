@@ -1,0 +1,364 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="so">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TopUpOnline - Adeegyada Ku-shubashada</title>
+    <!-- Ku xirida feylka CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>TopUp<span>Online</span></h1>
+    </header>
+
+    <div class="hero">
+        <h2>Adeegyada Top Up-ka & Xirmooyinka</h2>
+        <p>Si degdeg ah ugu shubo UC, Diamonds, iyo Internet</p>
+    </div>
+
+    <!-- Bogga Weyn (Main Page) -->
+    <div class="container" id="mainView">
+        <h3 class="section-title">Dooro Adeegga aad Rabto</h3>
+        <div class="products-grid" id="productGrid">
+            <!-- Adeegyada waxaa halkan ku soo saaraya JavaScript -->
+        </div>
+    </div>
+
+    <!-- Bogga Iibsashada (Checkout Page) -->
+    <div id="checkoutPage">
+        <h2>Faahfaahinta Dalabka Top Up-ka</h2>
+        
+        <div class="order-info">
+            <p><b>Adeegga:</b> <span id="summaryProductName"></span></p>
+            <p><b>Qiimaha:</b> <span id="summaryProductPrice" style="color: #16a34a; font-size: 15px; font-weight: bold;"></span></p>
+        </div>
+
+        <!-- Foomka Formspree -->
+        <form action="https://formspree.io/f/mppqybkq" method="POST">
+            
+            <input type="hidden" name="Item_Name" id="formItemName">
+            <input type="hidden" name="Item_Price" id="formItemPrice">
+
+            <div class="form-group">
+                <label>Numberkaga Telefanka (Abaalmarin/Xaqiijin)</label>
+                <input type="text" name="User_Phone" placeholder="Tusaale: 063XXXXXXX" required>
+            </div>
+
+            <div class="form-group">
+                <label>Gmail-kaaga Userka</label>
+                <input type="email" name="User_Gmail" placeholder="user@gmail.com" required>
+            </div>
+
+            <div class="form-group">
+                <label>Gmail-ka Admin-ka (Rasmi)</label>
+                <input type="text" name="Admin_Gmail" value="Abdiamiin748@gmail.com" readonly>
+            </div>
+
+            <button type="submit" class="btn-submit">Xaqiiji oo Dhameystir Top Up-ka</button>
+        </form>
+
+        <button class="btn-back" onclick="goBackToMarket()">Dib ugu noqo Adeegyada</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 TopUpOnline. Dhammaan xuquuqda waa la dhowray.</p>
+    </footer>
+
+    <!-- Ku xirida feylka JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
+<style>* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f6f8;
+    color: #333;
+}
+
+/* Header */
+header {
+    background-color: #111827;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 20px;
+    color: #f59e0b;
+}
+
+header h1 span {
+    color: white;
+}
+
+.hero {
+    background: linear-gradient(135deg, #1e3a8a, #2563eb);
+    color: white;
+    text-align: center;
+    padding: 30px 15px;
+}
+
+.hero h2 {
+    font-size: 20px;
+    margin-bottom: 6px;
+}
+
+.hero p {
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+/* Products Container */
+.container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #111827;
+    border-left: 4px solid #f59e0b;
+    padding-left: 8px;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+@media(min-width: 768px) {
+    .products-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-img {
+    height: 90px;
+    background: #f3f4f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 38px;
+}
+
+.card-body {
+    padding: 10px;
+}
+
+.category {
+    font-size: 9px;
+    color: #f59e0b;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+}
+
+.card-body h3 {
+    font-size: 13px;
+    color: #1f2937;
+    margin-bottom: 6px;
+}
+
+.card-footer {
+    padding: 10px;
+    background: #f9fafb;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.price {
+    font-size: 14px;
+    font-weight: bold;
+    color: #16a34a;
+}
+
+.btn-buy {
+    background: #f59e0b;
+    color: #111827;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.btn-buy:hover {
+    background: #d97706;
+    color: white;
+}
+
+/* Checkout Page */
+#checkoutPage {
+    display: none;
+    background: white;
+    max-width: 450px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+#checkoutPage h2 {
+    font-size: 17px;
+    margin-bottom: 12px;
+    color: #111827;
+    border-left: 4px solid #f59e0b;
+    padding-left: 8px;
+}
+
+.order-info {
+    background: #f9fafb;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 13px;
+    border: 1px solid #eee;
+}
+
+.order-info p {
+    margin-bottom: 4px;
+}
+
+.form-group {
+    margin-bottom: 12px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    color: #374151;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.form-group input[readonly] {
+    background-color: #f3f4f6;
+    color: #374151;
+    font-weight: bold;
+}
+
+.btn-submit {
+    background: #16a34a;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 11px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+.btn-back {
+    background: #6b7280;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 9px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 8px;
+    font-size: 13px;
+}
+
+footer {
+    background: #111827;
+    color: #9ca3af;
+    text-align: center;
+    padding: 12px;
+    margin-top: 30px;
+    font-size: 11px;
+}
+</style><script>// Liiska Adeegyada Top Up-ka
+const products = [
+    { id: 1, name: "PUBG Mobile 60 UC", category: "PUBG UC", price: 1, icon: "🪙" },
+    { id: 2, name: "PUBG Mobile 325 UC", category: "PUBG UC", price: 5, icon: "🪙" },
+    { id: 3, name: "PUBG Mobile 660 UC", category: "PUBG UC", price: 10, icon: "🪙" },
+    { id: 4, name: "Free Fire 100 Diamonds", category: "Free Fire", price: 1, icon: "💎" },
+    { id: 5, name: "Free Fire 520 Diamonds", category: "Free Fire", price: 5, icon: "💎" },
+    { id: 6, name: "Internet Data Bundle 5GB", category: "Internet", price: 3, icon: "📶" },
+    { id: 7, name: "Mobile Balance TopUp $5", category: "Balance", price: 5, icon: "💵" },
+    { id: 8, name: "Mobile Balance TopUp $10", category: "Balance", price: 10, icon: "💵" }
+];
+
+// Function-ka soo bandhigaya adeegyada
+function renderProducts() {
+    const grid = document.getElementById('productGrid');
+    if (!grid) return;
+    
+    grid.innerHTML = '';
+    products.forEach(p => {
+        grid.innerHTML += `
+            <div class="card">
+                <div class="card-img">${p.icon}</div>
+                <div class="card-body">
+                    <div class="category">${p.category}</div>
+                    <h3>${p.name}</h3>
+                </div>
+                <div class="card-footer">
+                    <div class="price">$${p.price}</div>
+                    <button class="btn-buy" onclick="openCheckout(${p.id})">Ku Shubo</button>
+                </div>
+            </div>
+        `;
+    });
+}
+
+// Function-ka fura bogga iibsashada/Top up-ka
+function openCheckout(id) {
+    const selectedItem = products.find(p => p.id === id);
+    
+    document.getElementById('summaryProductName').innerText = selectedItem.name;
+    document.getElementById('summaryProductPrice').innerText = '$' + selectedItem.price;
+
+    document.getElementById('formItemName').value = selectedItem.name;
+    document.getElementById('formItemPrice').value = '$' + selectedItem.price;
+
+    document.getElementById('mainView').style.display = 'none';
+    document.getElementById('checkoutPage').style.display = 'block';
+}
+
+// Dib ugu noqoshada bogga adeegyada
+function goBackToMarket() {
+    document.getElementById('checkoutPage').style.display = 'none';
+    document.getElementById('mainView').style.display = 'block';
+}
+
+// Soo saar adeegyada marka boggu soo kaco
+document.addEventListener('DOMContentLoaded', renderProducts);
+</script>
